@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Questionnaire de bilan — Malo MLV Coaching</title>
+<meta name="description" content="Le questionnaire de bilan du coaching Malo MLV : objectifs, niveau, organisation, contraintes, santé, récupération et alimentation. Réponds en quinze minutes, je construis ton programme à partir de tes réponses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></symbol>
+  <symbol id="i-insta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 2.5 20h19L12 3.5Z"/><path d="M12 9.5v4M12 17h.01"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></symbol>
+  <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></symbol>
+</svg>
+
+<header class="site-header" id="header">
+  <div class="shell shell-wide">
+    <a class="brand" href="index.html">
+      <span class="brand__mark"><span>M</span></span>
+      <span>Malo MLV<small>Coaching sportif</small></span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="index.html">Accueil</a>
+      <a href="index.html#offre">Coaching</a>
+      <a href="ebooks.html">Ebooks</a>
+      <a href="questionnaire.html" aria-current="page">Questionnaire</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn--sm" href="mailto:malomlv.coaching@gmail.com"><svg><use href="#i-mail"/></svg> Écrire à Malo</a>
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile">
+  <a href="index.html">Accueil</a>
+  <a href="index.html#offre">Coaching</a>
+  <a href="ebooks.html">Ebooks</a>
+  <a href="questionnaire.html">Questionnaire</a>
+  <a href="index.html#contact">Contact</a>
+</nav>
+
+<main>
+
+  <section class="q-hero">
+    <div class="shell">
+      <span class="eyebrow reveal">Bilan initial</span>
+      <h1 class="h-display reveal" data-delay="1" style="font-size:clamp(2.4rem,6.6vw,4.4rem)">Le questionnaire<br>qui sert de base à ton programme.</h1>
+      <p class="lead reveal" data-delay="2" style="margin-top:1.2rem">Huit parties, vingt-neuf questions, une quinzaine de minutes. Réponds honnêtement même sur les points qui fâchent : c'est ce qui rend le programme juste dès la première version. Tes réponses s'enregistrent dans ce navigateur, tu peux t'arrêter et revenir plus tard.</p>
+      <div class="hero__cta reveal" data-delay="3">
+        <a class="btn" href="#s0">Commencer <svg><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--ghost" href="index.html#offre">Revoir l'offre à 49 €</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="shell">
+      <div class="q-layout">
+
+        <!-- ASIDE -->
+        <aside class="q-aside">
+          <div class="progress">
+            <div class="progress__label"><span>Avancement</span><b id="progressPct">0 %</b></div>
+            <div class="progress__bar"><div class="progress__fill" id="progressFill"></div></div>
+            <p class="small" style="margin-top:.7rem" id="progressText">0 réponse sur 29 questions</p>
+          </div>
+
+          <nav class="q-nav" id="qNav" aria-label="Sections du questionnaire">
+            <a href="#s0"><b>00</b> Tes coordonnées</a>
+            <a href="#s1"><b>01</b> Ton objectif</a>
+            <a href="#s2"><b>02</b> Ton niveau en musculation</a>
+            <a href="#s3"><b>03</b> Ton organisation</a>
+            <a href="#s4"><b>04</b> Tes contraintes</a>
+            <a href="#s5"><b>05</b> Santé et blessures</a>
+            <a href="#s6"><b>06</b> Récupération</a>
+            <a href="#s7"><b>07</b> Alimentation</a>
+            <a href="#s8"><b>08</b> Pour personnaliser</a>
+          </nav>
+
+          <div class="progress">
+            <div class="progress__label"><span>Sauvegarde locale</span></div>
+            <p class="small" style="margin-top:.5rem">Tes réponses restent dans ton navigateur jusqu'à l'envoi. Rien n'est transmis avant que tu cliques.</p>
+            <button class="btn btn--ghost btn--wide btn--sm" type="button" id="resetForm" style="margin-top:.9rem"><svg><use href="#i-reset"/></svg> Effacer mes réponses</button>
+          </div>
+        </aside>
+
+        <!-- FORM -->
+           <!-- data-endpoint="" : renseigne une URL (Formspree, Netlify, ton API) pour transmettre
+             les réponses en POST en complément du téléchargement du bilan. -->
+        <form id="bilanForm" novalidate data-endpoint="">
+
+          <!-- 00 -->
+          <section class="q-section" id="s0" data-section="0">
+            <div class="q-section__head"><span>00</span><h2>Tes coordonnées</h2></div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="prenom">Prénom *</label>
+                <input type="text" id="prenom" name="prenom" autocomplete="given-name" placeholder="Ton prénom">
+              </div>
+              <div class="field">
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" name="nom" autocomplete="family-name" placeholder="Ton nom">
+              </div>
+              <div class="field">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" autocomplete="email" placeholder="toi@email.com">
+              </div>
+              <div class="field">
+                <label for="tel">Téléphone</label>
+                <input type="tel" id="tel" name="tel" autocomplete="tel" placeholder="06 00 00 00 00">
+              </div>
+              <div class="field">
+                <label for="age">Âge</label>
+                <input type="number" id="age" name="age" min="12" max="99" placeholder="25">
+              </div>
+              <div class="field">
+                <label for="taille">Taille (cm)</label>
+                <input type="number" id="taille" name="taille" min="120" max="230" placeholder="178">
+              </div>
+              <div class="field">
+                <label for="poids">Poids actuel (kg)</label>
+                <input type="number" id="poids" name="poids" min="30" max="250" step="0.1" placeholder="74">
+              </div>
+              <div class="field">
+                <label for="sexe">Sexe (pour le calcul des besoins)</label>
+                <select id="sexe" name="sexe">
+                  <option value="">Sélectionner</option>
+                  <option>Homme</option>
+                  <option>Femme</option>
+                  <option>Je préfère ne pas répondre</option>
+                </select>
+              </div>
+            </div>
+          </section>
+
+          <!-- 01 -->
+          <section class="q-section" id="s1" data-section="1">
+            <div class="q-section__head"><span>01</span><h2>Ton objectif 🎯</h2></div>
+
+            <div class="q">
+              <div class="q__label"><b>Q1</b><span>Quel est ton objectif principal ?</span></div>
+              <div class="choices choices--inline">
+                <label class="choice choice--radio"><input type="radio" name="q1" value="Prise de muscle"><span class="choice__box"></span><span class="choice__text">Prise de muscle</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q1" value="Perte de poids / sèche"><span class="choice__box"></span><span class="choice__text">Perte de poids / sèche</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q1" value="Recomposition corporelle"><span class="choice__box"></span><span class="choice__text">Recomposition corporelle</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q1" value="Prise de force"><span class="choice__box"></span><span class="choice__text">Prise de force</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q1" value="Améliorer ma condition physique"><span class="choice__box"></span><span class="choice__text">Améliorer ma condition physique</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q1" value="Autre" data-other="q1_autre"><span class="choice__box"></span><span class="choice__text">Autre</span></label>
+              </div>
+              <div class="field" data-conditional="q1_autre" hidden style="margin-top:.8rem">
+                <input type="text" id="q1_autre" name="q1_autre" placeholder="Précise ton objectif">
+              </div>
+            </div>
+
+            <div class="q">
+              <div class="q__label"><b>Q2</b><span>Quel résultat aimerais-tu obtenir grâce au coaching ?</span></div>
+              <div class="field"><textarea name="q2" placeholder="Décris le physique, les performances ou les habitudes que tu veux avoir dans quelques mois."></textarea></div>
+            </div>
+
+            <div class="q">
+              <div class="q__label"><b>Q3</b><span>As-tu une échéance ou un objectif précis ?</span></div>
+              <div class="choices choices--inline">
+                <label class="choice choice--radio"><input type="radio" name="q3" value="Non"><span class="choice__box"></span><span class="choice__text">Non</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q3" value="Oui" data-other="q3_date"><span class="choice__box"></span><span class="choice__text">Oui</span></label>
+              </div>
+              <div class="field" data-conditional="q3_date" hidden style="margin-top:.8rem">
+                <input type="text" id="q3_date" name="q3_date" placeholder="Ex : mariage en juillet, compétition en mars, rentrée en septembre">
+              </div>
+            </div>
+          </section>
+
+          <!-- 02 -->
+          <section class="q-section" id="s2" data-section="2">
+            <div class="q-section__head"><span>02</span><h2>Ton niveau en musculation 🏋️</h2></div>
+
+            <div class="q">
+              <div class="q__label"><b>Q4</b><span>Depuis combien de temps pratiques-tu la musculation ?</span></div>
+              <div class="choices choices--inline">
+                <label class="choice choice--radio"><input type="radio" name="q4" value="Je débute"><span class="choice__box"></span><span class="choice__text">Je débute</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q4" value="Moins de 6 mois"><span class="choice__box"></span><span class="choice__text">Moins de 6 mois</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q4" value="6 mois à 1 an"><span class="choice__box"></span><span class="choice__text">6 mois à 1 an</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q4" value="1 à 3 ans"><span class="choice__box"></span><span class="choice__text">1 à 3 ans</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q4" value="3 ans et +"><span class="choice__box"></span><span class="choice__text">3 ans et +</span></label>
+              </div>
+            </div>
+
+            <div class="q">
+              <div class="q__label"><b>Q5</b><span>Combien de séances fais-tu actuellement par semaine ?</span></div>
+              <div class="choices choices--inline">
+                <label class="choice choice--radio"><input type="radio" name="q5" value="1"><span class="choice__box"></span><span class="choice__text">1</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q5" value="2"><span class="choice__box"></span><span class="choice__text">2</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q5" value="3"><span class="choice__box"></span><span class="choice__text">3</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q5" value="4"><span class="choice__box"></span><span class="choice__text">4</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q5" value="5 et +"><span class="choice__box"></span><span class="choice__text">5 et +</span></label>
+              </div>
+            </div>
+
+            <div class="q">
+              <div class="q__label"><b>Q6</b><span>As-tu déjà suivi un programme structuré ?</span></div>
+              <div class="choices choices--inline">
+                <label class="choice choice--radio"><input type="radio" name="q6" value="Jamais"><span class="choice__box"></span><span class="choice__text">Jamais</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q6" value="Oui, mais pas régulièrement"><span class="choice__box"></span><span class="choice__text">Oui, mais pas régulièrement</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q6" value="Oui, régulièrement"><span class="choice__box"></span><span class="choice__text">Oui, régulièrement</span></label>
+              </div>
+            </div>
+
+            <div class="q">
+              <div class="q__label"><b>Q7</b><span>Quels exercices maîtrises-tu particulièrement bien ? Et lesquels te posent problème ?</span></div>
+              <div class="field"><textarea name="q7" placeholder="Ex : à l'aise sur le développé couché et les tractions. Le squat et le soulevé de terre me posent problème, je perds le dos."></textarea></div>
+            </div>
+          </section>
+
+          <!-- 03 -->
+          <section class="q-section" id="s3" data-section="3">
+            <div class="q-section__head"><span>03</span><h2>Ton organisation 📅</h2></div>
+
+            <div class="q">
+              <div class="q__label"><b>Q8</b><span>Combien de séances peux-tu réellement consacrer à la musculation chaque semaine ?</span></div>
+              <div class="choices choices--inline">
+                <label class="choice choice--radio"><input type="radio" name="q8" value="2"><span class="choice__box"></span><span class="choice__text">2</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q8" value="3"><span class="choice__box"></span><span class="choice__text">3</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q8" value="4"><span class="choice__box"></span><span class="choice__text">4</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q8" value="5"><span class="choice__box"></span><span class="choice__text">5</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q8" value="Variable selon mes semaines"><span class="choice__box"></span><span class="choice__text">Variable selon mes semaines</span></label>
+              </div>
+            </div>
+
+            <div class="q">
+              <div class="q__label"><b>Q9</b><span>Combien de temps peux-tu consacrer à une séance ?</span></div>
+              <div class="choices choices--inline">
+                <label class="choice choice--radio"><input type="radio" name="q9" value="Moins de 45 min"><span class="choice__box"></span><span class="choice__text">Moins de 45 min</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q9" value="45-60 min"><span class="choice__box"></span><span class="choice__text">45–60 min</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q9" value="60-75 min"><span class="choice__box"></span><span class="choice__text">60–75 min</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q9" value="75 min et +"><span class="choice__box"></span><span class="choice__text">75 min et +</span></label>
+              </div>
+            </div>
+
+            <div class="q">
+              <div class="q__label"><b>Q10</b><span>Quels jours peux-tu généralement t'entraîner ?</span></div>
+              <div class="field"><textarea name="q10" placeholder="Ex : lundi, mardi, jeudi, samedi matin. Jamais le vendredi."></textarea></div>
+            </div>
+
+            <div class="q">
+              <div class="q__label"><b>Q11</b><span>Où t'entraînes-tu ?</span></div>
+              <div class="choices choices--inline">
+                <label class="choice choice--radio"><input type="radio" name="q11" value="Salle de sport"><span class="choice__box"></span><span class="choice__text">Salle de sport</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q11" value="À domicile"><span class="choice__box"></span><span class="choice__text">À domicile</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q11" value="Les deux"><span class="choice__box"></span><span class="choice__text">Les deux</span></label>
+              </div>
+            </div>
+
+            <div class="q">
+              <div class="q__label"><b>Q12</b><span>Quel matériel as-tu à disposition ?</span></div>
+              <div class="field"><textarea name="q12" placeholder="Ex : salle complète. Chez moi : haltères réglables 2×20 kg, banc, barre de traction, élastiques, pas de squat rack."></textarea></div>
+            </div>
+          </section>
+
+          <!-- 04 -->
+          <section class="q-section" id="s4" data-section="4">
+            <div class="q-section__head"><span>04</span><h2>Tes contraintes et problématiques ⚠️</h2></div>
+
+            <div class="q">
+              <div class="q__label"><b>Q13</b><span>Qu'est-ce qui te limite actuellement dans ta progression ?</span> <span class="q__hint">Plusieurs réponses possibles.</span></div>
+              <div class="choices choices--inline">
+                <label class="choice"><input type="checkbox" name="q13" value="Manque de temps"><span class="choice__box"></span><span class="choice__text">Manque de temps</span></label>
+                <label class="choice"><input type="checkbox" name="q13" value="Manque de motivation"><span class="choice__box"></span><span class="choice__text">Manque de motivation</span></label>
+                <label class="choice"><input type="checkbox" name="q13" value="Difficulté à être régulier"><span class="choice__box"></span><span class="choice__text">Difficulté à être régulier</span></label>
+                <label class="choice"><input type="checkbox" name="q13" value="Je ne sais pas construire mes séances"><span class="choice__box"></span><span class="choice__text">Je ne sais pas comment construire mes séances</span></label>
+                <label class="choice"><input type="checkbox" name="q13" value="Je ne sais pas comment progresser"><span class="choice__box"></span><span class="choice__text">Je ne sais pas comment progresser</span></label>
+                <label class="choice"><input type="checkbox" name="q13" value="Je récupère mal"><span class="choice__box"></span><span class="choice__text">Je récupère mal</span></label>
+                <label class="choice"><input type="checkbox" name="q13" value="Mon alimentation"><span class="choice__box"></span><span class="choice__text">Mon alimentation</span></label>
+                <label class="choice"><input type="checkbox" name="q13" value="Douleurs / inconforts"><span class="choice__box"></span><span class="choice__text">Douleurs / inconforts</span></label>
+                <label class="choice"><input type="checkbox" name="q13" value="Autre" data-other="q13_autre"><span class="choice__box"></span><span class="choice__text">Autre</span></label>
+              </div>
+              <div class="field" data-conditional="q13_autre" hidden style="margin-top:.8rem">
+                <input type="text" id="q13_autre" name="q13_autre" placeholder="Précise">
+              </div>
+            </div>
+
+            <div class="q">
+              <div class="q__label"><b>Q14</b><span>Qu'est-ce qui t'a empêché de progresser jusqu'à maintenant ?</span></div>
+              <div class="field"><textarea name="q14" placeholder="Les vraies raisons : changements de programme toutes les deux semaines, arrêts après les vacances, sommeil, stress au travail..."></textarea></div>
+            </div>
+
+            <div class="q">
+              <div class="q__label"><b>Q15</b><span>Y a-t-il des exercices que tu ne veux pas ou ne peux pas faire ? Pourquoi ?</span></div>
+              <div class="field"><textarea name="q15" placeholder="Ex : pas de soulevé de terre, je n'aime pas la sensation. Pas de course, genoux fragiles."></textarea></div>
+            </div>
+          </section>
+
+          <!-- 05 -->
+          <section class="q-section" id="s5" data-section="5">
+            <div class="q-section__head"><span>05</span><h2>Santé et blessures 🩹</h2></div>
+
+            <div class="q">
+              <div class="q__label"><b>Q16</b><span>As-tu actuellement une douleur ou une blessure qui pourrait être affectée par l'entraînement ?</span></div>
+              <div class="choices choices--inline">
+                <label class="choice choice--radio"><input type="radio" name="q16" value="Non"><span class="choice__box"></span><span class="choice__text">Non</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q16" value="Oui" data-other="q16_precision" data-health="1"><span class="choice__box"></span><span class="choice__text">Oui</span></label>
+              </div>
+              <div class="field" data-conditional="q16_precision" hidden style="margin-top:.8rem">
+                <input type="text" id="q16_precision" name="q16_precision" placeholder="Où, depuis quand, dans quels mouvements ?">
+              </div>
+            </div>
+
+            <div class="q">
+              <div class="q__label"><b>Q17</b><span>As-tu eu des blessures importantes par le passé ?</span></div>
+              <div class="choices choices--inline">
+                <label class="choice choice--radio"><input type="radio" name="q17" value="Non"><span class="choice__box"></span><span class="choice__text">Non</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q17" value="Oui" data-other="q17_precision" data-health="1"><span class="choice__box"></span><span class="choice__text">Oui</span></label>
+              </div>
+              <div class="field" data-conditional="q17_precision" hidden style="margin-top:.8rem">
+                <input type="text" id="q17_precision" name="q17_precision" placeholder="Lesquelles, et est-ce toujours sensible aujourd'hui ?">
+              </div>
+            </div>
+
+            <div class="q">
+              <div class="q__label"><b>Q18</b><span>As-tu une restriction médicale connue concernant l'activité physique ?</span></div>
+              <div class="choices choices--inline">
+                <label class="choice choice--radio"><input type="radio" name="q18" value="Non"><span class="choice__box"></span><span class="choice__text">Non</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q18" value="Oui" data-other="q18_precision" data-health="1"><span class="choice__box"></span><span class="choice__text">Oui</span></label>
+              </div>
+              <div class="field" data-conditional="q18_precision" hidden style="margin-top:.8rem">
+                <input type="text" id="q18_precision" name="q18_precision" placeholder="Laquelle, et que t'a dit le professionnel de santé ?">
+              </div>
+            </div>
+
+            <div class="alert" id="healthAlert" hidden style="border-color:var(--red);background:rgba(226,0,26,.16)">
+              <svg><use href="#i-alert"/></svg>
+              <span><strong>Un avis médical est nécessaire avant de programmer les exercices concernés.</strong> Le questionnaire ne sert pas à poser un diagnostic ni à traiter une blessure. Parle-en à ton médecin ou à un kinésithérapeute, puis transmets ses recommandations : le programme sera construit autour.</span>
+            </div>
+          </section>
+
+          <!-- 06 -->
+          <section class="q-section" id="s6" data-section="6">
+            <div class="q-section__head"><span>06</span><h2>Récupération 😴</h2></div>
+
+            <div class="q">
+              <div class="q__label"><b>Q19</b><span>Combien d'heures dors-tu en moyenne par nuit ?</span></div>
+              <div class="choices choices--inline">
+                <label class="choice choice--radio"><input type="radio" name="q19" value="Moins de 5 h"><span class="choice__box"></span><span class="choice__text">&lt; 5 h</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q19" value="5-6 h"><span class="choice__box"></span><span class="choice__text">5–6 h</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q19" value="6-7 h"><span class="choice__box"></span><span class="choice__text">6–7 h</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q19" value="7-8 h"><span class="choice__box"></span><span class="choice__text">7–8 h</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q19" value="8 h et +"><span class="choice__box"></span><span class="choice__text">8 h +</span></label>
+              </div>
+            </div>
+
+            <div class="q">
+              <div class="q__label"><b>Q20</b><span>Comment évalues-tu ta récupération actuellement ?</span> <span class="q__hint">De 1 à 10.</span></div>
+              <div class="scale">
+                <output class="scale__value" for="q20">5</output>
+                <input class="scale__input" type="range" id="q20" name="q20" min="1" max="10" step="1" value="5" aria-label="Note de récupération, de 1 à 10">
+                <div class="scale__labels"><span>1 · Je traîne</span><span>10 · Frais chaque jour</span></div>
+              </div>
+            </div>
+
+            <div class="q">
+              <div class="q__label"><b>Q21</b><span>Ton niveau de stress quotidien est généralement :</span></div>
+              <div class="choices choices--inline">
+                <label class="choice choice--radio"><input type="radio" name="q21" value="Faible"><span class="choice__box"></span><span class="choice__text">Faible</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q21" value="Modéré"><span class="choice__box"></span><span class="choice__text">Modéré</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q21" value="Élevé"><span class="choice__box"></span><span class="choice__text">Élevé</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q21" value="Très élevé"><span class="choice__box"></span><span class="choice__text">Très élevé</span></label>
+              </div>
+            </div>
+
+            <div class="q">
+              <div class="q__label"><b>Q22</b><span>Ton activité quotidienne est plutôt :</span></div>
+              <div class="choices choices--inline">
+                <label class="choice choice--radio"><input type="radio" name="q22" value="Très sédentaire"><span class="choice__box"></span><span class="choice__text">Très sédentaire</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q22" value="Peu active"><span class="choice__box"></span><span class="choice__text">Peu active</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q22" value="Active"><span class="choice__box"></span><span class="choice__text">Active</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q22" value="Très active / travail physique"><span class="choice__box"></span><span class="choice__text">Très active / travail physique</span></label>
+              </div>
+            </div>
+          </section>
+
+          <!-- 07 -->
+          <section class="q-section" id="s7" data-section="7">
+            <div class="q-section__head"><span>07</span><h2>Alimentation 🍽️</h2></div>
+
+            <div class="q">
+              <div class="q__label"><b>Q23</b><span>Comment décrirais-tu actuellement ton alimentation ?</span></div>
+              <div class="field"><textarea name="q23" placeholder="Ex : trois repas par jour, sandwich le midi au travail, je saute rarement le petit-déjeuner, je grignote le soir."></textarea></div>
+            </div>
+
+            <div class="q">
+              <div class="q__label"><b>Q24</b><span>As-tu actuellement une stratégie alimentaire particulière ?</span></div>
+              <div class="choices choices--inline">
+                <label class="choice choice--radio"><input type="radio" name="q24" value="Non"><span class="choice__box"></span><span class="choice__text">Non</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q24" value="Je mange intuitivement"><span class="choice__box"></span><span class="choice__text">Je mange intuitivement</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q24" value="Je compte mes calories"><span class="choice__box"></span><span class="choice__text">Je compte mes calories</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q24" value="Je suis un plan alimentaire"><span class="choice__box"></span><span class="choice__text">Je suis un plan alimentaire</span></label>
+                <label class="choice choice--radio"><input type="radio" name="q24" value="Autre" data-other="q24_autre"><span class="choice__box"></span><span class="choice__text">Autre</span></label>
+              </div>
+              <div class="field" data-conditional="q24_autre" hidden style="margin-top:.8rem">
+                <input type="text" id="q24_autre" name="q24_autre" placeholder="Précise">
+              </div>
+            </div>
+
+            <div class="q">
+              <div class="q__label"><b>Q25</b><span>Y a-t-il des contraintes alimentaires à prendre en compte ?</span> <span class="q__hint">Plusieurs réponses possibles.</span></div>
+              <div class="choices choices--inline">
+                <label class="choice"><input type="checkbox" name="q25" value="Aucune"><span class="choice__box"></span><span class="choice__text">Aucune</span></label>
+                <label class="choice"><input type="checkbox" name="q25" value="Allergies / intolérances"><span class="choice__box"></span><span class="choice__text">Allergies / intolérances</span></label>
+                <label class="choice"><input type="checkbox" name="q25" value="Régime particulier"><span class="choice__box"></span><span class="choice__text">Régime particulier</span></label>
+                <label class="choice"><input type="checkbox" name="q25" value="Préférences alimentaires"><span class="choice__box"></span><span class="choice__text">Préférences alimentaires</span></label>
+                <label class="choice"><input type="checkbox" name="q25" value="Autre" data-other="q25_autre"><span class="choice__box"></span><span class="choice__text">Autre</span></label>
+              </div>
+              <div class="field" data-conditional="q25_autre" hidden style="margin-top:.8rem">
+                <input type="text" id="q25_autre" name="q25_autre" placeholder="Précise lesquelles">
+              </div>
+            </div>
+
+            <div class="q">
+              <div class="q__label"><b>Q26</b><span>Comment évalues-tu ta régularité alimentaire ?</span> <span class="q__hint">De 1 à 10.</span></div>
+              <div class="scale">
+                <output class="scale__value" for="q26">5</output>
+                <input class="scale__input" type="range" id="q26" name="q26" min="1" max="10" step="1" value="5" aria-label="Note de régularité alimentaire, de 1 à 10">
+                <div class="scale__labels"><span>1 · Très irrégulière</span><span>10 · Très régulière</span></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 08 -->
+          <section class="q-section" id="s8" data-section="8">
+            <div class="q-section__head"><span>08</span><h2>Pour personnaliser ton coaching 🎯</h2></div>
+
+            <div class="q">
+              <div class="q__label"><b>Q27</b><span>Qu'attends-tu principalement de moi en tant que coach ?</span> <span class="q__hint">Plusieurs réponses possibles.</span></div>
+              <div class="choices choices--inline">
+                <label class="choice"><input type="checkbox" name="q27" value="Un programme précis"><span class="choice__box"></span><span class="choice__text">Un programme précis</span></label>
+                <label class="choice"><input type="checkbox" name="q27" value="Être guidé sur ma progression"><span class="choice__box"></span><span class="choice__text">Être guidé sur ma progression</span></label>
+                <label class="choice"><input type="checkbox" name="q27" value="Corriger mes erreurs"><span class="choice__box"></span><span class="choice__text">Corriger mes erreurs</span></label>
+                <label class="choice"><input type="checkbox" name="q27" value="Être accompagné et responsabilisé"><span class="choice__box"></span><span class="choice__text">Être accompagné et responsabilisé</span></label>
+                <label class="choice"><input type="checkbox" name="q27" value="Adapter mon entraînement à mes contraintes"><span class="choice__box"></span><span class="choice__text">Adapter mon entraînement à mes contraintes</span></label>
+                <label class="choice"><input type="checkbox" name="q27" value="Un peu de tout"><span class="choice__box"></span><span class="choice__text">Un peu de tout</span></label>
+              </div>
+            </div>
+
+            <div class="q">
+              <div class="q__label"><b>Q28</b><span>Qu'est-ce qui te ferait dire à la fin du coaching : « Ça valait vraiment le coup » ?</span></div>
+              <div class="field"><textarea name="q28" placeholder="Sois précis. Un chiffre, une photo, une sensation, une habitude tenue."></textarea></div>
+            </div>
+
+            <div class="q">
+              <div class="q__label"><b>Q29</b><span>Y a-t-il quelque chose d'important que je devrais savoir pour adapter au mieux ton programme ?</span></div>
+              <div class="field"><textarea name="q29" placeholder="Travail de nuit, déplacements fréquents, enfants en bas âge, matériel limite, timidité en salle, tout ce qui compte."></textarea></div>
+            </div>
+          </section>
+
+          <div class="q-section" style="border-color:var(--line-strong)">
+            <div class="q-section__head"><span>FIN</span><h2>Récupérer ton bilan</h2></div>
+            <p style="color:var(--muted);font-size:.97rem;max-width:70ch">Télécharge ton bilan PDF, puis transmets-le à Malo par le moyen que tu préfères (Email, Message ou Instagram) pour lancer ton programme.</p>
+            <div class="q-submit">
+              <button class="btn" type="submit" id="submitBtn">Télécharger mon bilan PDF <svg><use href="#i-arrow"/></svg></button>
+              <button class="btn btn--ghost" type="button" id="copyBtn"><svg><use href="#i-copy"/></svg> Copier mes réponses</button>
+            </div>
+            <div class="q-success" id="qSuccess" hidden>
+              <strong>Bilan PDF téléchargé !</strong>
+              <span>Transmets maintenant ton fichier à Malo via l'une de ces 3 options :</span>
+              <div class="q-success__links">
+                <a class="btn btn--sm" id="emailContact" href="mailto:malomlv.coaching@gmail.com"><svg style="width:16px;height:16px"><use href="#i-mail"/></svg> Par Email</a>
+                <a class="btn btn--sm btn--ghost" id="messageContact" href="sms:+33642427036"><svg style="width:16px;height:16px"><use href="#i-phone"/></svg> Par Message</a>
+                <a class="btn btn--sm btn--ghost" href="https://www.instagram.com/malo.mlv" target="_blank" rel="noopener"><svg style="width:16px;height:16px"><use href="#i-insta"/></svg> Sur Instagram</a>
+              </div>
+            </div>
+            <p class="small" style="margin-top:1rem">En envoyant, tu transmets ces informations à Malo uniquement pour construire ton programme. Elles ne servent à rien d'autre.</p>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:1rem">
+          <span class="brand__mark"><span>M</span></span>
+          <span>Malo MLV<small>Coaching sportif</small></span>
+        </a>
+        <p style="color:var(--muted);font-size:.9rem;max-width:34ch">Coaching personnalisé en ligne : entraînement, nutrition, suivi. Programme écrit à partir de ton bilan, ajusté au fil des semaines.</p>
+      </div>
+      <div>
+        <h4>Le site</h4>
+        <div class="footer-links">
+          <a href="index.html#offre">L'offre 49 €</a>
+          <a href="ebooks.html">Boutique ebooks</a>
+          <a href="questionnaire.html">Questionnaire de bilan</a>
+          <a href="index.html#faq">Questions fréquentes</a>
+        </div>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <div class="footer-links">
+          <a href="mailto:malomlv.coaching@gmail.com">malomlv.coaching@gmail.com</a>
+          <a href="tel:+33642427036">06 42 42 70 36</a>
+          <a href="https://www.instagram.com/malo.mlv" target="_blank" rel="noopener">Instagram @malo.mlv</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Malo MLV — Coaching sportif</span>
+      <span>Les programmes ne remplacent pas un avis médical. En cas de douleur ou de pathologie, consulte un professionnel de santé.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="script.js"></script>
+</body>
+</html>
