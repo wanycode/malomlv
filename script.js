@@ -18,6 +18,34 @@
     }, 4200);
   }
 
+  /* Copie dans le presse-papiers, avec repli pour les navigateurs sans API clipboard. */
+  function copyToClipboard(text, okMessage) {
+    function fallback() {
+      var area = document.createElement("textarea");
+      area.value = text;
+      area.setAttribute("readonly", "");
+      area.style.position = "fixed";
+      area.style.top = "-1000px";
+      document.body.appendChild(area);
+      area.select();
+      var ok = false;
+      try {
+        ok = document.execCommand("copy");
+      } catch (err) {
+        ok = false;
+      }
+      document.body.removeChild(area);
+      toast(ok ? okMessage : "La copie automatique a échoué. Sélectionne le texte manuellement.");
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        toast(okMessage);
+      }, fallback);
+    } else {
+      fallback();
+    }
+  }
+
   /* --------------------------------------------------------------- Header & Navigation */
   var header = document.getElementById("header");
   function onScroll() {
@@ -810,32 +838,7 @@
     var copyBtn = document.getElementById("reportCopy");
     if (copyBtn) {
       copyBtn.addEventListener("click", function () {
-        var text = reportToText(report, isSample);
-
-        function fallback() {
-          var area = document.createElement("textarea");
-          area.value = text;
-          area.setAttribute("readonly", "");
-          area.style.position = "fixed";
-          area.style.opacity = "0";
-          document.body.appendChild(area);
-          area.select();
-          try {
-            document.execCommand("copy");
-            toast("Analyse copiée. Colle-la dans un email à Malo.");
-          } catch (err) {
-            toast("La copie automatique a échoué.");
-          }
-          document.body.removeChild(area);
-        }
-
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(function () {
-            toast("Analyse copiée. Colle-la dans un email à Malo.");
-          }, fallback);
-        } else {
-          fallback();
-        }
+        copyToClipboard(reportToText(report, isSample), "Analyse copiée. Colle-la dans un email à Malo.");
       });
     }
   }
@@ -1417,6 +1420,314 @@
     }
 
     if (localStore(CLIENT_ACCESS_KEY) === "1") openClientPanel();
+
+    /* ---------- Ebook inclus ---------- */
+    /* Valeurs moyennes de reference pour 100 g : [nom, kcal, proteines, glucides, lipides] */
+    var EBOOK_FOODS = {
+      proteines: [
+        ["Blanc de poulet", 165, 31, 0, 3.6],
+        ["Bœuf haché 5 %", 190, 27, 0, 8],
+        ["Cabillaud", 82, 18, 0, 0.7],
+        ["Saumon", 208, 20, 0, 13],
+        ["Thon au naturel", 116, 26, 0, 1],
+        ["Œuf entier", 143, 13, 1.1, 9.5],
+        ["Tofu ferme", 144, 15, 4, 8],
+        ["Lentilles cuites", 116, 9, 20, 0.4],
+        ["Skyr nature", 63, 11, 4, 0.2],
+        ["Whey (poudre)", 400, 80, 8, 6],
+      ],
+      feculents: [
+        ["Riz basmati", 130, 2.7, 28, 0.3],
+        ["Riz complet", 123, 2.6, 25, 1],
+        ["Pâtes complètes", 124, 5, 25, 0.9],
+        ["Quinoa", 120, 4.4, 21, 1.9],
+        ["Patate douce", 90, 2, 20, 0.2],
+        ["Pomme de terre", 87, 2, 20, 0.1],
+        ["Flocons d'avoine", 380, 13, 60, 7],
+        ["Pain complet", 250, 9, 42, 3.5],
+      ],
+      legumes: [
+        ["Brocoli", 35, 2.4, 7, 0.4],
+        ["Courgette", 17, 1.2, 3.1, 0.3],
+        ["Haricots verts", 31, 1.8, 7, 0.1],
+        ["Épinards", 23, 2.9, 3.6, 0.4],
+        ["Poivrons", 31, 1, 6, 0.3],
+        ["Salade verte", 15, 1.4, 2.9, 0.2],
+      ],
+      extras: [
+        ["Huile d'olive", 884, 0, 0, 100],
+        ["Avocat", 160, 2, 9, 15],
+        ["Amandes", 579, 21, 22, 50],
+        ["Beurre de cacahuète", 588, 25, 20, 50],
+        ["Fromage blanc 0 %", 47, 8, 4, 0.2],
+        ["Chocolat noir 85 %", 590, 10, 20, 50],
+        ["Banane", 89, 1.1, 23, 0.3],
+        ["Miel", 304, 0.3, 82, 0],
+      ],
+    };
+
+    var EBOOK_KEY = "malo-client-ebook-v1";
+    var ebookRoot = document.getElementById("ebookReader");
+
+    if (ebookRoot) {
+      var ebookChapters = Array.prototype.slice.call(ebookRoot.querySelectorAll(".ebook__chapter"));
+      var ebookTocItems = Array.prototype.slice.call(ebookRoot.querySelectorAll(".ebook__toc-item"));
+      var ebookCount = document.getElementById("ebookCount");
+      var ebookRead = document.getElementById("ebookRead");
+      var ebookProgress = document.getElementById("ebookProgress");
+      var ebookPrev = document.getElementById("ebookPrev");
+      var ebookNext = document.getElementById("ebookNext");
+      var ebookDone = document.getElementById("ebookDone");
+      var ebookCopy = document.getElementById("ebookCopy");
+      var ebookPrint = document.getElementById("ebookPrint");
+      var ebookIndex = 0;
+      var ebookLus = [];
+
+      function ebookIds() {
+        return ebookChapters.map(function (chapter) {
+          return chapter.id;
+        });
+      }
+
+      function readEbookState() {
+        var raw = localStore(EBOOK_KEY);
+        if (!raw) return {};
+        try {
+          var state = JSON.parse(raw);
+          return state && typeof state === "object" ? state : {};
+        } catch (err) {
+          return {};
+        }
+      }
+
+      function writeEbookState(dernier) {
+        localStore(EBOOK_KEY, JSON.stringify({ lu: ebookLus, dernier: dernier }));
+      }
+
+      function paintEbookDone() {
+        var chapter = ebookChapters[ebookIndex];
+        var done = chapter ? ebookLus.indexOf(chapter.id) !== -1 : false;
+        ebookTocItems.forEach(function (button) {
+          button.classList.toggle("is-lu", ebookLus.indexOf(button.getAttribute("data-goto")) !== -1);
+        });
+        if (ebookRead) ebookRead.textContent = ebookLus.length + " / " + ebookChapters.length + " lus";
+        if (ebookDone && chapter) {
+          ebookDone.innerHTML =
+            (done ? "Marquer comme non lu" : "Marquer comme lu") + ' <svg><use href="#i-check"/></svg>';
+        }
+      }
+
+      function showChapter(index, scroll) {
+        if (!ebookChapters.length) return;
+        ebookIndex = Math.max(0, Math.min(ebookChapters.length - 1, index));
+        var chapter = ebookChapters[ebookIndex];
+
+        ebookChapters.forEach(function (item, i) {
+          item.hidden = i !== ebookIndex;
+        });
+        ebookTocItems.forEach(function (button) {
+          var active = button.getAttribute("data-goto") === chapter.id;
+          button.classList.toggle("is-active", active);
+          if (active) button.setAttribute("aria-current", "true");
+          else button.removeAttribute("aria-current");
+        });
+
+        if (ebookCount) {
+          ebookCount.textContent =
+            "Chapitre " + (ebookIndex + 1) + " / " + ebookChapters.length + " · " + chapter.getAttribute("data-title");
+        }
+        if (ebookPrev) ebookPrev.disabled = ebookIndex === 0;
+        if (ebookNext) ebookNext.disabled = ebookIndex === ebookChapters.length - 1;
+        if (ebookProgress) ebookProgress.style.width = ((ebookIndex + 1) / ebookChapters.length) * 100 + "%";
+        paintEbookDone();
+        writeEbookState(chapter.id);
+
+        if (scroll) {
+          var top = ebookRoot.getBoundingClientRect().top + window.pageYOffset - 90;
+          window.scrollTo({ top: top, behavior: "smooth" });
+        }
+        try {
+          history.replaceState(null, "", "#ebook-" + chapter.id);
+        } catch (err) {
+          /* file:// ou navigateur restrictif */
+        }
+      }
+
+      function ebookChapterText(chapter) {
+        var lines = ["EBOOK MALO MLV — " + String(chapter.getAttribute("data-title") || "").toUpperCase(), ""];
+        chapter.querySelectorAll("h4, p, li, caption, tr").forEach(function (el) {
+          if (el.closest(".calc")) return;
+          var text = el.textContent.replace(/\s+/g, " ").trim();
+          if (!text) return;
+          if (el.tagName === "H4") lines.push("", text.toUpperCase(), "");
+          else if (el.tagName === "CAPTION") lines.push("[" + text + "]");
+          else if (el.tagName === "TR") {
+            lines.push(
+              "  " +
+                Array.prototype.map
+                  .call(el.children, function (cell) {
+                    return cell.textContent.replace(/\s+/g, " ").trim();
+                  })
+                  .join(" | ")
+            );
+          } else lines.push(el.tagName === "LI" ? "- " + text : text);
+        });
+        return lines.join("\n").replace(/\n{3,}/g, "\n\n");
+      }
+
+      function gotoChapter(id) {
+        var index = ebookIds().indexOf(id);
+        if (index !== -1) showChapter(index, true);
+      }
+
+      Array.prototype.forEach.call(document.querySelectorAll("[data-goto]"), function (button) {
+        button.addEventListener("click", function (event) {
+          if (event && event.preventDefault) event.preventDefault();
+          gotoChapter(button.getAttribute("data-goto"));
+        });
+      });
+
+      if (ebookPrev) {
+        ebookPrev.addEventListener("click", function () {
+          showChapter(ebookIndex - 1, true);
+        });
+      }
+
+      if (ebookNext) {
+        ebookNext.addEventListener("click", function () {
+          showChapter(ebookIndex + 1, true);
+        });
+      }
+
+      if (ebookDone) {
+        ebookDone.addEventListener("click", function () {
+          var chapter = ebookChapters[ebookIndex];
+          if (!chapter) return;
+          var position = ebookLus.indexOf(chapter.id);
+          if (position === -1) {
+            ebookLus.push(chapter.id);
+            toast("Chapitre marqué comme lu.");
+          } else {
+            ebookLus.splice(position, 1);
+            toast("Chapitre marqué comme non lu.");
+          }
+          paintEbookDone();
+          writeEbookState(chapter.id);
+        });
+      }
+
+      if (ebookCopy) {
+        ebookCopy.addEventListener("click", function () {
+          var chapter = ebookChapters[ebookIndex];
+          if (!chapter) return;
+          copyToClipboard(
+            ebookChapterText(chapter),
+            "Chapitre « " + chapter.getAttribute("data-title") + " » copié."
+          );
+        });
+      }
+
+      if (ebookPrint) {
+        ebookPrint.addEventListener("click", function () {
+          toast("Choisis « Enregistrer au format PDF » dans la fenêtre d'impression.");
+          setTimeout(function () {
+            window.print();
+          }, 250);
+        });
+      }
+
+      document.addEventListener("keydown", function (event) {
+        if (clientPanel && clientPanel.hidden) return;
+        var tag = (event.target && event.target.tagName) || "";
+        if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          showChapter(ebookIndex + 1, true);
+        } else if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          showChapter(ebookIndex - 1, true);
+        }
+      });
+
+      var ebookState = readEbookState();
+      ebookLus = Array.isArray(ebookState.lu) ? ebookState.lu : [];
+
+      var ebookHash = (window.location.hash || "").replace("#ebook-", "");
+      var startIndex = ebookIds().indexOf(ebookHash);
+      var fromHash = startIndex !== -1;
+      if (startIndex === -1) startIndex = ebookIds().indexOf(ebookState.dernier);
+      if (startIndex === -1) startIndex = 0;
+      /* Le chapitre vient du hash : on replace le scroll, sinon le panel s'ouvre en haut. */
+      showChapter(startIndex, fromHash);
+    }
+
+    /* ---------- Calculateur de portions ---------- */
+    var calcBox = document.getElementById("ebookCalc");
+
+    if (calcBox) {
+      var calcSelects = Array.prototype.slice.call(calcBox.querySelectorAll("[data-calc-cat]"));
+
+      calcSelects.forEach(function (select) {
+        var items = EBOOK_FOODS[select.getAttribute("data-calc-cat")] || [];
+        items.forEach(function (item) {
+          var option = document.createElement("option");
+          option.value = item[0];
+          option.textContent = item[0] + " · " + item[1] + " kcal / 100 g";
+          select.appendChild(option);
+        });
+      });
+
+      function foodFor(cat, name) {
+        var items = EBOOK_FOODS[cat] || [];
+        for (var i = 0; i < items.length; i++) {
+          if (items[i][0] === name) return items[i];
+        }
+        return items[0] || null;
+      }
+
+      function updateCalc() {
+        var totals = { kcal: 0, proteines: 0, glucides: 0, lipides: 0 };
+
+        calcBox.querySelectorAll(".calc__row").forEach(function (row) {
+          var select = row.querySelector("[data-calc-cat]");
+          var gramsField = row.querySelector("[data-calc-grams]");
+          var out = row.querySelector("[data-calc-row-out]");
+          if (!select || !gramsField) return;
+
+          var food = foodFor(select.getAttribute("data-calc-cat"), select.value);
+          var grams = firstNumber(gramsField.value);
+          if (isNaN(grams) || grams < 0) grams = 0;
+          var factor = grams / 100;
+          var rowKcal = food ? food[1] * factor : 0;
+
+          if (food) {
+            totals.kcal += rowKcal;
+            totals.proteines += food[2] * factor;
+            totals.glucides += food[3] * factor;
+            totals.lipides += food[4] * factor;
+          }
+          if (out) out.textContent = Math.round(rowKcal) + " kcal";
+        });
+
+        var kcalOut = document.getElementById("calcKcal");
+        var proteinesOut = document.getElementById("calcP");
+        var glucidesOut = document.getElementById("calcG");
+        var lipidesOut = document.getElementById("calcL");
+
+        if (kcalOut) kcalOut.textContent = Math.round(totals.kcal) + " kcal";
+        if (proteinesOut) proteinesOut.textContent = Math.round(totals.proteines) + " g";
+        if (glucidesOut) glucidesOut.textContent = Math.round(totals.glucides) + " g";
+        if (lipidesOut) lipidesOut.textContent = Math.round(totals.lipides) + " g";
+      }
+
+      calcSelects.forEach(function (select) {
+        select.addEventListener("change", updateCalc);
+      });
+      calcBox.querySelectorAll("[data-calc-grams]").forEach(function (field) {
+        field.addEventListener("input", updateCalc);
+      });
+      updateCalc();
+    }
   }
 
   /* --------------------------------------------------------------- Questionnaire Form */
@@ -1900,32 +2211,10 @@
   var copyBtn = document.getElementById("copyBtn");
   if (copyBtn) {
     copyBtn.addEventListener("click", function () {
-      var text = buildMessage();
-
-      function fallback() {
-        var area = document.createElement("textarea");
-        area.value = text;
-        area.setAttribute("readonly", "");
-        area.style.position = "fixed";
-        area.style.opacity = "0";
-        document.body.appendChild(area);
-        area.select();
-        try {
-          document.execCommand("copy");
-          toast("Réponses copiées. Colle-les dans un email à malomlv.coaching@gmail.com.");
-        } catch (err) {
-          toast("La copie automatique a échoué. Sélectionne le texte manuellement.");
-        }
-        document.body.removeChild(area);
-      }
-
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function () {
-          toast("Réponses copiées. Colle-les dans un email à malomlv.coaching@gmail.com.");
-        }, fallback);
-      } else {
-        fallback();
-      }
+      copyToClipboard(
+        buildMessage(),
+        "Réponses copiées. Colle-les dans un email à malomlv.coaching@gmail.com."
+      );
     });
   }
 
